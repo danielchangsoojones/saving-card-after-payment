@@ -3,7 +3,7 @@ const app = express();
 const { resolve } = require("path");
 // Copy the .env.example in the root into a .env file in this folder
 const env = require("dotenv").config({ path: "./.env" });
-const stripe = require("stripe")(env.parsed.STRIPE_SECRET_KEY);
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 app.use(express.static(env.parsed.STATIC_DIR));
 app.use(
@@ -46,7 +46,7 @@ app.post("/create-payment-intent", async (req, res) => {
 
   // Send publishable key and PaymentIntent details to client
   res.send({
-    publicKey: env.parsed.STRIPE_PUBLISHABLE_KEY,
+    publicKey: process.env.STRIPE_PUBLISHABLE_KEY,
     clientSecret: paymentIntent.client_secret,
     id: paymentIntent.id
   });
