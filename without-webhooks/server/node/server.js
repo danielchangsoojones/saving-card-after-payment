@@ -43,7 +43,8 @@ app.post("/pay", async (req, res) => {
     paymentIntentId,
     items,
     currency,
-    isSavingCard
+    isSavingCard,
+    cardholderName
   } = req.body;
 
   console.log("hi");
@@ -66,7 +67,11 @@ app.post("/pay", async (req, res) => {
       };
 
       // // Create a Customer to store the PaymentMethod
-      const customer = await stripe.customers.create();
+      const customer = await stripe.customers.create({
+        name: cardholderName,
+        description: "Groupme Customer"
+      });
+
       paymentIntentData.customer = customer.id;
 
       intent = await stripe.setupIntents.create({
