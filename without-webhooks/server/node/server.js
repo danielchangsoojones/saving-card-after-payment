@@ -61,17 +61,17 @@ app.post("/pay", async (req, res) => {
         confirm: true
       };
 
-      const setupIntent = await stripe.setupIntents.create({
+      // // Create a Customer to store the PaymentMethod
+      const customer = await stripe.customers.create();
+      paymentIntentData.customer = customer.id;
+
+      const intent = await stripe.setupIntents.create({
         payment_method_types: ['card'],
         confirm: true,
         payment_method: paymentIntentData.payment_method,
-        usage: "off_session"
+        usage: "off_session",
+        customer: paymentIntentData.customer
       });
-
-      // //this saves the card for future use
-      // // Create a Customer to store the PaymentMethod
-      // const customer = await stripe.customers.create();
-      // paymentIntentData.customer = customer.id;
       
       // // setup_future_usage saves the card and tells Stripe how you plan to use it later
       // // set to "off_session" if you plan on charging the saved card when your user is not present
