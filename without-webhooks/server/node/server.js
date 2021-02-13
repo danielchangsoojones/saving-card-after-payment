@@ -82,9 +82,6 @@ app.post("/pay", async (req, res) => {
       // paymentIntentData.setup_future_usage = 'off_session';
 
       // intent = await stripe.paymentIntents.create(paymentIntentData);
-    } else {
-      // Confirm the PaymentIntent to place a hold on the card
-      intent = await stripe.paymentIntents.confirm(paymentIntentId);
     }
 
     const response = generateResponse(intent);
