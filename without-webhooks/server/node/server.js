@@ -43,8 +43,7 @@ app.post("/pay", async (req, res) => {
     paymentIntentId,
     items,
     currency,
-    isSavingCard,
-    cardholderName
+    isSavingCard
   } = req.body;
 
   console.log("hi");
@@ -68,7 +67,7 @@ app.post("/pay", async (req, res) => {
 
       // // Create a Customer to store the PaymentMethod
       const customer = await stripe.customers.create({
-        name: cardholderName,
+        name: req.body.cardholderName,
         description: "Groupme Customer"
       });
 
@@ -119,6 +118,7 @@ const generateResponse = intent => {
       // Payment is complete, authentication not required
       // To cancel the payment after capture you will need to issue a Refund (https://stripe.com/docs/api/refunds)
       console.log("💰 Payment received!");
+      console.log(intent.client_secret);
       return { clientSecret: intent.client_secret };
   }
 };
