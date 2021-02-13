@@ -119,6 +119,7 @@ const generateResponse = intent => {
       // To cancel the payment after capture you will need to issue a Refund (https://stripe.com/docs/api/refunds)
       console.log("💰 Payment received!");
       console.log(intent.client_secret);
+      console.log(intent);
       return { clientSecret: intent.client_secret };
   }
 };
