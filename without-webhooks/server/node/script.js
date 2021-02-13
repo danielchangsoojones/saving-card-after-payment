@@ -135,8 +135,8 @@ var pay = function(stripe, card) {
 /* Shows a success / error message when the payment is complete */
 var orderComplete = function(clientSecret) {
   stripe.retrievePaymentIntent(clientSecret).then(function(result) {
-    var paymentIntent = result.paymentIntent;
-    var paymentIntentJson = JSON.stringify(paymentIntent, null, 2);
+    // var paymentIntent = result.paymentIntent;
+    // var paymentIntentJson = JSON.stringify(paymentIntent, null, 2);
     document.querySelectorAll(".payment-view").forEach(function(view) {
       view.classList.add("hidden");
     });
