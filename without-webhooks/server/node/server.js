@@ -22,8 +22,7 @@ app.use(
 
 app.get("/", (req, res) => {
   // Display checkout page
-  const thePath = path.resolve(__dirname, "hi.html");
-  console.log("yoooo")
+  const thePath = path.resolve("../../client/index.html");
   res.sendFile(thePath);
 });
 
