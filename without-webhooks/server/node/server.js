@@ -65,7 +65,7 @@ app.post("/pay", async (req, res) => {
       const customer = await stripe.customers.create();
       paymentIntentData.customer = customer.id;
 
-      const intent = await stripe.setupIntents.create({
+      intent = await stripe.setupIntents.create({
         payment_method_types: ['card'],
         confirm: true,
         payment_method: paymentIntentData.payment_method,
