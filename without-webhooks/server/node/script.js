@@ -104,6 +104,7 @@ var pay = function(stripe, card) {
       } else {
         orderData.paymentMethodId = result.paymentMethod.id;
         orderData.isSavingCard = document.querySelector("#save-card").checked;
+        orderData.cardholderName = cardholderName;
 
         return fetch("/pay", {
           method: "POST",
