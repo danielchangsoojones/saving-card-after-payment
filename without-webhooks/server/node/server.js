@@ -22,7 +22,7 @@ app.use(
 
 app.get("/", (req, res) => {
   // Display checkout page
-  const thePath = path.resolve("../../client/index.html");
+  const thePath = path.resolve("/client/index.html");
   res.sendFile(thePath);
 });
 
