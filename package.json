@@ -4,7 +4,7 @@
     "description": "An example on how to save a card afte making a payment",
     "main": "server.js",
     "scripts": {
-      "start": "node using-webhooks/server/node/server.js",
+      "start": "node without-webhooks/server/node/server.js",
       "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "stripe-samples",
