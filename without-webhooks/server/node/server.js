@@ -1,11 +1,11 @@
 const express = require("express");
 const app = express();
-const { resolve } = require("path");
+const path = require("path");
 // Copy the .env.example in the root into a .env file in this folder
 const env = require("dotenv").config({ path: "./.env" });
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
-app.use(express.static(process.env.STATIC_DIR));
+// app.use(express.static(process.env.STATIC_DIR));
 app.use(
   express.json({
     // We need the raw body to verify webhook signatures.
@@ -22,8 +22,9 @@ app.use(
 
 app.get("/", (req, res) => {
   // Display checkout page
-  const path = resolve("/without-webhooks/client/index.html");
-  res.sendFile(path);
+  const thePath = path.resolve(__dirname, "hi.html");
+  console.log("yoooo")
+  res.sendFile(thePath);
 });
 
 app.get("/stripe-key", (req, res) => {
