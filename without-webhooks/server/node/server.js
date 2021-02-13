@@ -18,9 +18,11 @@ app.use(
   })
 );
 
+
+
 app.get("/", (req, res) => {
   // Display checkout page
-  const path = resolve(process.env.STATIC_DIR + "/index.html");
+  const path = resolve("/without-webhooks/client/index.html");
   res.sendFile(path);
 });
 
