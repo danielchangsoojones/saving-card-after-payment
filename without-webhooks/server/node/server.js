@@ -46,6 +46,10 @@ app.post("/pay", async (req, res) => {
     isSavingCard
   } = req.body;
 
+  console.log("hi");
+  console.log(req.body);
+  console.log(req);
+
   const orderAmount = calculateOrderAmount(items);
 
   try {
